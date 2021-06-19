@@ -1,0 +1,90 @@
+<h2>Template: Dinamics</h2>
+<hr />
+
+<form (ngSubmit)="save()" #myForm="ngForm" autocomplete="off">
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Name</label>
+    <div class="col-sm-9">
+      <input
+        class="form-control"
+        [ngModel]="person.name"
+        name="name"
+        placeholder="Person name"
+        required
+      />
+      <span *ngIf="myForm.controls.name?.errors" class="form-text text-danger"
+        >Name is required and min lenght is 3</span
+      >
+    </div>
+  </div>
+
+  <!-- Add Favorite -->
+
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Add</label>
+    <div class="col-sm-9">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Add favorite"
+          aria-label="Recipient's username"
+          aria-describedby="button-addon2"
+          [(ngModel)]="newGame"
+          name="newGame"
+          (keyup.enter)="add()"
+        />
+        <button class="btn btn-outline-primary" type="button" (click)="add()">
+          Add
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!--  -->
+
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Favourites</label>
+    <div class="col-sm-9">
+      <div
+        *ngFor="let game of person.favorites; let i = index"
+        class="input-group mb-1"
+      >
+        <input
+          [(ngModel)]="game.name"
+          name="game_{{ i }}"
+          class="form-control"
+          required
+        />
+        <button
+          class="btn btn-danger"
+          type="button"
+          (click)="removeFavorite(i)"
+        >
+          -
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <button
+        [disabled]="myForm.invalid"
+        class="btn btn-primary float-end"
+        type="submit"
+      >
+        Save
+      </button>
+    </div>
+  </div>
+</form>
+
+<div class="row">
+  <div class="col-md-9">
+    <span>Person</span>
+    <pre class="bg-dark text-white p-3 border rounded-3">
+      {{ person | json }}
+    </pre>
+  </div>
+</div>

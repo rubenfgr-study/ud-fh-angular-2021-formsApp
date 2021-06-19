@@ -1,0 +1,82 @@
+<h2>Reactive: Dinamics</h2>
+<hr />
+
+<form (ngSubmit)="save()" autocomplete="off" [formGroup]="myForm">
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Name</label>
+    <div class="col-sm-9">
+      <input
+        class="form-control"
+        placeholder="Person name"
+        formControlName="name"
+        form
+      />
+      <span *ngIf="isInvalidField('name')" class="form-text text-danger"
+        >Name is required and min lenght is 3</span
+      >
+    </div>
+  </div>
+
+  <!-- Add Favorite -->
+
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Add</label>
+    <div class="col-sm-9">
+      <div class="input-group mb-3">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Add favorite"
+          aria-label="Recipient's username"
+          aria-describedby="button-addon2"
+          [formControl]="newFavorite"
+          (keyup.enter)="addFavorite()"
+        />
+        <button [disabled]="newFavorite.invalid" class="btn btn-outline-primary" type="button" (click)="addFavorite()">
+          Add
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!--  -->
+
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Favorites</label>
+    <div class="col-sm-9" formArrayName="favorites">
+      <div
+        *ngFor="let favorite of favoritesArr.controls; let i = index"
+        class="input-group mb-1"
+      >
+        <input class="form-control" [formControlName]="i" />
+        <button class="btn btn-danger" type="button" (click)="removeFavorite(i)">-</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-sm-12">
+      <button class="btn btn-primary float-end" type="submit">Save</button>
+    </div>
+  </div>
+</form>
+
+<!-- Print -->
+
+<div class="row">
+  <div class="col-md-9">
+    <span>Valid</span>
+    <pre class="bg-dark text-white p-3 border rounded-3">
+      {{ myForm.valid | json }}
+    </pre>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-9">
+    <span>Person</span>
+    <pre class="bg-dark text-white p-3 border rounded-3">
+      {{ myForm.value | json }}
+    </pre>
+  </div>
+</div>

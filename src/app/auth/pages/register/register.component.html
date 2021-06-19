@@ -1,0 +1,144 @@
+<h2>Reactive Validation</h2>
+<hr />
+
+<div class="row">
+  <div class="col">
+    <form (ngSubmit)="submitForm()" autocomplete="off" [formGroup]="myForm">
+      <!-- name -->
+
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Name</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Username"
+            formControlName="name"
+          />
+          <span *ngIf="isInvalidField('name')" class="form-text text-danger"
+            >Username must be firstname and lastname</span
+          >
+        </div>
+      </div>
+
+      <!-- email -->
+
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Email</label>
+        <div class="col-sm-9">
+          <input
+            type="email"
+            class="form-control"
+            placeholder="user@gmail.com"
+            formControlName="email"
+          />
+          <span *ngIf="isInvalidField('email')" class="form-text text-danger"
+            >{{ emailErrorMsg }}</span
+          >
+          <!-- <span *ngIf="emailRequired()" class="form-text text-danger"
+            >Email is required</span
+          >
+          <span *ngIf="emailFormat()" class="form-text text-danger"
+            >Email is not valid</span
+          >
+          <span *ngIf="emailExists()" class="form-text text-danger"
+          >Email exists</span
+        > -->
+        </div>
+      </div>
+
+      <!-- username -->
+
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Username</label>
+        <div class="col-sm-9">
+          <input type="text" class="form-control" placeholder="Username" formControlName="username"/>
+          <span *ngIf="isInvalidField('username')" class="form-text text-danger"
+            >Username is required & cant 'strider'</span
+          >
+        </div>
+      </div>
+
+      <!-- password -->
+
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Password</label>
+        <div class="col-sm-9">
+          <input type="password" class="form-control" placeholder="password" formControlName="password" />
+          <span *ngIf="isInvalidField('password')" class="form-text text-danger"
+            >Min length 6 characters</span
+          >
+        </div>
+      </div>
+
+      <!-- password confirm -->
+
+      <div class="row mb-3">
+        <label class="col-sm-3 col-form-label">Confirm Password</label>
+        <div class="col-sm-9">
+          <input type="password" class="form-control" placeholder="password" formControlName="passwordRepeat" />
+          <span *ngIf="isInvalidField('passwordRepeat')" class="form-text text-danger"
+            >Passwords should be equals</span
+          >
+        </div>
+      </div>
+
+      <!-- submit button -->
+      <div class="row">
+        <div class="col">
+          <button [disabled]="myForm.pending" type="submit" class="btn btn-primary float-end">
+            Register
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <code class="bg-warning p-1">Is valid: {{ myForm.valid }}</code>
+    <br>
+    <span
+      >Form Status </span
+    >
+    <pre class="bg-dark text-white border rounded p-2">
+      {{ myForm.status | json }}
+    </pre>
+
+    <span
+      >Form Value </span
+    >
+    <pre class="bg-dark text-white border rounded p-2">
+      {{ myForm.value | json }}
+    </pre>
+
+    <span
+      >Form Errors </span
+    >
+    <pre class="bg-dark text-white border rounded p-2">
+      {{ myForm.errors | json }}
+    </pre>
+
+    <span
+      >Name Errors </span
+    >
+    <pre class="bg-dark text-white border rounded p-2">
+      {{ myForm.controls.name.errors | json }}
+    </pre>
+
+    <span
+      >Email Errors </span
+    >
+    <pre class="bg-dark text-white border rounded p-2">
+      {{ myForm.controls.email.errors | json }}
+    </pre>
+
+    <span
+      >username Errors </span
+    >
+    <pre class="bg-dark text-white border rounded p-2">
+      {{ myForm.controls.username.errors | json }}
+    </pre>
+  </div>
+</div>

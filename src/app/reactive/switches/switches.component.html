@@ -1,0 +1,110 @@
+<h2>Reactive: Switches</h2>
+<hr />
+
+<form (ngSubmit)="save()" [formGroup]="myForm">
+  <!-- Radius -->
+
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Gender</label>
+    <div class="col-sm-9">
+      <div class="form-check">
+        <label class="form-check-label">
+          <input
+            type="radio"
+            class="form-check-input"
+            formControlName="gender"
+            value="M"
+          />
+          Man
+        </label>
+      </div>
+
+      <div class="form-check">
+        <label class="form-check-label">
+          <input
+            type="radio"
+            class="form-check-input"
+            value="W"
+            formControlName="gender"
+          />
+          Woman
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Switch -->
+
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label">Notifications</label>
+    <div class="col-sm-9">
+      <div class="form-check form-switch">
+        <label class="form-check-label">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            value="notifications"
+            formControlName="notifications"
+          />
+          I want receive notifications
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Checkbox -->
+
+  <div class="row mb-3">
+    <label class="col-sm-3 col-form-label"></label>
+    <div class="col-sm-9">
+      <div class="form-check">
+        <label class="form-check-label">
+          <input
+            type="checkbox"
+            class="form-check-input"
+            value="checkedValue"
+            formControlName="terms"
+          />
+          Tems & conditions for use
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- Submit button -->
+
+  <div class="row">
+    <div class="col">
+      <button class="btn btn-primary float-end" (click)="(1)">Save</button>
+    </div>
+  </div>
+</form>
+
+<h5>Form value</h5>
+
+<pre class="bg-dark text-white p-3">
+  {{ myForm.value | json }}
+</pre>
+
+<hr />
+
+<h5>Person</h5>
+
+<pre class="bg-dark text-white p-3">
+  {{ person | json }}
+</pre>
+
+<hr />
+
+<h5>Valid</h5>
+
+<pre class="bg-dark text-white p-3">
+  {{ myForm.valid }}
+</pre>
+
+<hr />
+<h5>Conditions</h5>
+
+<pre class="bg-dark text-white p-3">
+  {{ myForm.value | json }}
+</pre>

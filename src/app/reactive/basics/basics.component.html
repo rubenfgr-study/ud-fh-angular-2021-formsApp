@@ -1,0 +1,102 @@
+<h2>Reactive: Basics</h2>
+<hr />
+
+<div class="row">
+  <div class="col">
+    <!-- Form -->
+    <form (ngSubmit)="save()" autocomplete="off" [formGroup]="myForm">
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Product</label>
+        <div class="col-sm-9">
+          <input
+            type="text"
+            class="form-control"
+            placeholder="Product name"
+            formControlName="product"
+          />
+
+          <span *ngIf="fieldIsValid('product')" class="form-text text-danger"
+            >Minimun lenght is 3 characters</span
+          >
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Price</label>
+        <div class="col-sm-9">
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Product price"
+            formControlName="price"
+          />
+          <span *ngIf="fieldIsValid('price')" class="form-text text-danger"
+            >Required min price 0</span
+          >
+        </div>
+      </div>
+
+      <div class="mb-3 row">
+        <label class="col-sm-3 col-form-label">Stocks</label>
+        <div class="col-sm-9">
+          <input
+            type="number"
+            class="form-control"
+            placeholder="Product Stocks"
+            formControlName="stocks"
+          />
+
+          <span *ngIf="fieldIsValid('stocks')" class="form-text text-danger"
+            >Required min stocks 0</span
+          >
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <button type="submit" class="btn btn-primary float-end">Save</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <span>Valid</span>
+    <pre class="bg-dark text-white p-3">
+            {{ myForm.valid }}
+        </pre
+    >
+
+    <span>Pristine</span>
+    <pre class="bg-dark text-white p-3">
+            {{ myForm.pristine }}
+        </pre
+    >
+
+    <span>Touched</span>
+    <pre class="bg-dark text-white p-3">
+            {{ myForm.touched }}
+        </pre
+    >
+
+    <span>Value</span>
+    <pre class="bg-dark text-white p-3">
+            {{ myForm.value | json }}
+        </pre
+    >
+
+    <span>CustomDirective</span>
+    <pre class="bg-dark text-white p-3">
+            {{ myForm.controls.stock?.errors | json }}
+        </pre
+    >
+
+    <span>Price</span>
+    <pre class="bg-dark text-white p-3">
+            {{ myForm.controls.price?.errors | json }}
+        </pre
+    >
+  </div>
+</div>
